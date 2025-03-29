@@ -8,9 +8,10 @@
 </head>
 <body>
     <a href="{{route("categories.index")}}">Liste categorie</a>
-    <a href="{{route("categories.create")}}">Ajouter categorie</a>
+    <a href="{{route("notes.index")}}">Liste notes</a>
     <br>
-    <h1>Ajout d'une Categorie</h1>
+    <h1>Ajout d'une categorie</h1>
+    <a href="{{route('categories.create')}}">Ajouter une categorie</a>
     
     <form action="{{route("categories.store")}}" method="post">
     @csrf

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,6 +13,7 @@ Route::get('/', function () {
 //     return 'voici la page des categories'; 
 // });
 Route::resource('categories', CategorieController::class);
+Route::resource('notes', NoteController::class);
 
 
 
