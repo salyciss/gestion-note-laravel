@@ -14,7 +14,15 @@
     <ul>
 
         @foreach ($categories as $categorie )
-         <li> {{ _($categorie->nom) }}</li>   
+         <li> 
+            {{ _($categorie->nom) }} 
+            <a href="{{route('categories.edit', $categorie->id)}}">Modifier</a>
+            <form action="{{route('categories.destroy', $categorie->id)}}" method="POST" style="display:inline">
+                @csrf
+                @method('delete')
+                <input type="submit" value="supprimer">
+            </form>
+        </li>   
         @endforeach
     </ul>
 </body>

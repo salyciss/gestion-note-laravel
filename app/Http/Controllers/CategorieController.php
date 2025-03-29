@@ -48,22 +48,28 @@ class CategorieController extends Controller
      */
     public function edit(int $id)
     {
-        
+        $categorie = Categorie::find($id);
+        return view('categorie.edit', compact('categorie'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, int $id)
     {
-        //
+        $categorie = Categorie::find($id);
+        $categorie->nom = $request->nom;
+        $categorie->update();
+        return redirect()->route("categories.index");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $id)
     {
-        //
+        $categorie = Categorie::find($id);
+        $categorie->delete();
+        return redirect()->route("categories.index");
     }
 }
