@@ -29,6 +29,7 @@
             <td>{{ _($note->titre) }} </td>
             <td>{{ _($note->description) }} </td>
             <td>
+                <a href="{{route('notes.show', $note->id)}}">Voir</a>
                 <a href="{{route('notes.edit', $note->id)}}">Modifier</a>
                 <form action="{{route('notes.destroy', $note->id)}}" method="POST" style="display:inline">
                     @csrf

@@ -9,4 +9,7 @@ class Note extends Model
     protected $fillable = [
         'titre', 'description', 'id_categorie'     
     ];
+    public function categorie (){
+        return $this->belongsTo(Categorie::class,"id_categorie");
+    }
 }
