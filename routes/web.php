@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BanniereController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProfileController;
@@ -14,7 +15,9 @@ Route::get('/', function () {
 // });
 Route::resource('categories', CategorieController::class);
 Route::resource('notes', NoteController::class);
-
+Route::resource('bannieres', BanniereController::class)->only([
+    'store', 'edit', 'update', 'destroy'
+]);
 
 
 Route::get('/dashboard', function () {

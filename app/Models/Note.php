@@ -9,7 +9,12 @@ class Note extends Model
     protected $fillable = [
         'titre', 'description', 'id_categorie'     
     ];
-    public function categorie (){
-        return $this->belongsTo(Categorie::class,"id_categorie");
+
+    public function categorie() {
+        return $this->belongsTo(Categorie::class, "id_categorie");
+    }
+
+    public function banniere() {
+        return $this->hasOne(Banniere::class, 'id_note');
     }
 }

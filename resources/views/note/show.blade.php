@@ -3,24 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Details d'une note</title>
+    <title>Détails d'une note</title>
 </head>
 <body>
-    <a href="{{route("categories.index")}}">Liste notes</a>
-    <a href="{{route("notes.index")}}">Liste notes</a>
-    <br>
-    <h1>Details d'une note</h1>
+    <a href="{{ route('categories.index') }}">Liste catégories</a>
+    <a href="{{ route('notes.index') }}">Liste notes</a>
 
-        <strong>Titre:</strong> {{ $note->titre }}
-        
-        
-        <strong>Description:</strong> {{ $note->description }}
-        
-        
-        <strong>Categorie:</strong> {{ $note->categorie->nom }}
+    <h1>Détails d'une note</h1>
 
+    <strong>Titre:</strong> {{ $note->titre }} <br>
+    <strong>Description:</strong> {{ $note->description }} <br>
+    <strong>Catégorie:</strong> {{ $note->categorie->nom }} <br><br>
 
-    </form>
+    {{-- Affichage ou ajout de bannière --}}
+    @if($note->banniere)
+        <h3>Bannière associée :</h3>
+        <strong>Titre :</strong> {{ $note->banniere->titre }} <br>
+        <img src="{{ asset('storage/' . $note->banniere->image) }}" alt="Bannière" width="200"><br><br>
+
+        {{-- Lien pour modifier ou supprimer --}}
+        <a href="{{ route('bannieres.edit', $note->banniere->id) }}">Modifier la bannière</a>
+        <form action="{{ route('bannieres.destroy', $note->banniere->id) }}" method="POST" style="display:inline;">
+            @csrf
+            @method('DELETE')
+            <button type="submit">Supprimer</button>
+        </form>
+    @else
+        <h3>Pas de bannière</h3>
+        <form action="{{ route('bannieres.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="hidden" name="id_note" value="{{ $note->id }}">
+            <label for="titre">Titre bannière:</label>
+            <input type="text" name="titre" required><br>
+            <label for="image">Image:</label>
+            <input type="file" name="image" required><br>
+            <button type="submit">Ajouter</button>
+        </form>
+    @endif
+
 </body>
 </html>
